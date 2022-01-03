@@ -6,7 +6,7 @@
 <launch>
 
   <!-- Declare arguments with default values -->
-  <arg name="__ns"        default = "/" />  <!-- Emulate the namespace functionality of ROS2 -->
+  <arg name="namespace"   default = "/" />
   <arg name="node_name"   default = "microstrain_inertial_driver" />
   <arg name="debug"       default = "false" />
   <arg name="params_file" default = "" />
@@ -14,12 +14,12 @@
   <!-- ****************************************************************** -->
   <!-- Microstrain sensor node -->
   <!-- ****************************************************************** -->
-  <node name="$(arg node_name)" pkg="microstrain_inertial_driver" type="microstrain_inertial_driver_node" output="screen" ns="$(arg __ns)">
+  <node name="$(arg node_name)" pkg="microstrain_inertial_driver" type="microstrain_inertial_driver_node" output="screen" ns="$(arg namespace)">
 
     <!-- Load the default params file. --> 
     <rosparam file="$(find microstrain_inertial_driver)/microstrain_inertial_driver_common/config/params.yml" command="load" />
 
-    <!-- If you want to override any settings in here, make a new yaml file, and set the value via the params_file arg -->
+    <!-- If you want to override any settings specified in the params.yml file, make a new yaml file, and set the value via the params_file arg -->
     <rosparam file="$(arg params_file)" command="load" unless="$(eval arg('params_file') == '')" />
   </node>
 
