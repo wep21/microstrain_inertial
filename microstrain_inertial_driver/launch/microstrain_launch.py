@@ -50,7 +50,7 @@ def generate_launch_description():
       # Load the default params file manually, since this is a ROS params file, we will need to load the file manually
       yaml.safe_load(open(_DEFAULT_PARAMS_FILE, 'r')),
 
-      # If you want to override any settings in here, make a new yaml file, and set the value via the params_file arg
+      # If you want to override any settings in the params.yml file, make a new yaml file, and set the value via the params_file arg
       LaunchConfiguration('params_file')
     ]
   )
