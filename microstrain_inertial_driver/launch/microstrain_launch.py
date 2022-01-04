@@ -32,11 +32,11 @@ def generate_launch_description():
 
   # Declare arguments with default values
   launch_description = []
-  launch_description.append(DeclareLaunchArgument('node_name',   default_value=_PACKAGE_NAME))
-  launch_description.append(DeclareLaunchArgument('namespace',   default_value='/'))
-  launch_description.append(DeclareLaunchArgument('configure',   default_value='false'))
-  launch_description.append(DeclareLaunchArgument('activate',    default_value='false'))
-  launch_description.append(DeclareLaunchArgument('params_file', default_value=_EMPTY_PARAMS_FILE))
+  launch_description.append(DeclareLaunchArgument('namespace',   default_value='/',                description='Namespace to use when launching the nodes in this launch file'))
+  launch_description.append(DeclareLaunchArgument('node_name',   default_value=_PACKAGE_NAME,      description='Name to give the Microstrain Inertial Driver node'))
+  launch_description.append(DeclareLaunchArgument('configure',   default_value='false',            description='Whether or not to configure the node on startup'))
+  launch_description.append(DeclareLaunchArgument('activate',    default_value='false',            description='Whether or not to activate the node on startup'))
+  launch_description.append(DeclareLaunchArgument('params_file', default_value=_EMPTY_PARAMS_FILE, description='Path to file that will load additional parameters'))
 
   # ****************************************************************** 
   # Microstrain sensor node 
