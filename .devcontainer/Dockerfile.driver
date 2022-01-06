@@ -86,11 +86,6 @@ RUN set -ex \
         microstrain
 USER microstrain
 
-# Users can override this file to a different launch file if they want
-ENV MICROSTRAIN_LAUNCH_FILE "/opt/ros/${DOCKER_ROS_VERSION}/share/microstrain_inertial_driver/launch/microstrain.launch"
-
-
-
 # Add the entrypoint file and use that as the entrypoint
 COPY .devcontainer/docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
