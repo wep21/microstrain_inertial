@@ -58,6 +58,7 @@ find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(microstrain_inertial_msgs REQUIRED)
+find_package(Boost REQUIRED)
 
 ###################################
 ## catkin specific configuration ##
@@ -163,16 +164,15 @@ if(DEFINED ENV{ROS_DISTRO})
 endif()
 
 # Allow the MSCL include directory to be accessed
-include_directories(${MSCL_INC_PATH} ${BOOST_INC_PATH})
+include_directories(${MSCL_INC_PATH} ${BOOST_INCLUDE_DIRS})
 
 # Linking
 target_link_libraries(${PROJECT_NAME}
   ${MSCL_LIB_PATH}
-  ${catkin_LIBRARIES}
+  ${BOOST_LIBRARIES}
 )
 target_link_libraries(${PROJECT_NAME}_node
   ${PROJECT_NAME}
-  ${catkin_LIBRARIES}
 )
 
 #############
@@ -195,7 +195,6 @@ install(DIRECTORY ${COMMON_DIR}/config
 )
 
 # We also have to install MSCL and it's dependencies so it can be found at runtime
-file(GLOB BOOST_LIBS "${MSCL_DIR}/Boost/lib/*")
-install(FILES ${BOOST_LIBS} ${MSCL_DIR}/libmscl.so
+install(FILES ${MSCL_DIR}/libmscl.so
   DESTINATION lib
 )
